@@ -86,15 +86,11 @@ let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
   if (!sumArr || !Array.isArray(sumArr) || sumArr.length === 0) {
-    // Handle the case where sumArr is undefined, not an array, or an empty array.
     return [0, 'No valid input provided.'];
   }
-  // Calculate the sum of the numbers in the array using the `sum` function you've created.
   const sumResult = sumArr.reduce((accumulator, currentValue) => {
     return sum(accumulator, currentValue)[0];
   }, 0);
-
-  // Create the formatted string using string concatenation.
   const formattedString = sumArr.join(',') + ' was passed in as an array of numbers, and ' + sumResult + ' is their sum.';
 
   return [sumResult, formattedString];
@@ -118,13 +114,25 @@ Test this function by hand in the console to get it working, and when you think 
 
 // Write your code here
 function multiplyArray(multArr) { //eslint-disable-line
+  if (!multArr || !Array.isArray(multArr) || multArr.length === 0) {
+    return [0, 'No valid input provided.'];
+  }
 
+  const product = multArr.reduce((accumulator, currentValue) => {
+    if (typeof accumulator === 'number' && typeof currentValue === 'number') {
+      return accumulator * currentValue;
+    } else {
+      return accumulator;
+    }
+  }, 1);
+
+  const formattedString = 'The numbers ' + multArr.join(',') + ' have a product of ' + product + '.';
+  return [product, formattedString];
 }
-
 // Here is the test for multiplyArray(); uncomment it to run it
-//testMultiplyArray(testArray);
+testMultiplyArray(testArray);
 
-// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
+// Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop.
 
 // You're done! Submit the link to the repo following the instructions in Canvas. Or, try out the stretch goal below...
 
