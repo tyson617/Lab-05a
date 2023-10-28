@@ -85,12 +85,24 @@ Test this function by hand in the console to get it working, and when you think 
 let testArray = [2, 3, 4]; //eslint-disable-line
 
 function sumArray(sumArr) { //eslint-disable-line
+  if (!sumArr || !Array.isArray(sumArr) || sumArr.length === 0) {
+    // Handle the case where sumArr is undefined, not an array, or an empty array.
+    return [0, 'No valid input provided.'];
+  }
+  // Calculate the sum of the numbers in the array using the `sum` function you've created.
+  const sumResult = sumArr.reduce((accumulator, currentValue) => {
+    return sum(accumulator, currentValue)[0];
+  }, 0);
 
+  // Create the formatted string using string concatenation.
+  const formattedString = sumArr.join(',') + ' was passed in as an array of numbers, and ' + sumResult + ' is their sum.';
+
+  return [sumResult, formattedString];
 }
 
 // Here is the test for sumArray(); uncomment it to run it
 
-// testSumArray(testArray);
+testSumArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. Don't forget to create a new branch for your work on the next question!
 
@@ -110,7 +122,7 @@ function multiplyArray(multArr) { //eslint-disable-line
 }
 
 // Here is the test for multiplyArray(); uncomment it to run it
-// testMultiplyArray(testArray);
+//testMultiplyArray(testArray);
 
 // Once you get the test passing, do an a-c-p cycle and synchronize the code between GitHub and your laptop. 
 
